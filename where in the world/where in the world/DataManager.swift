@@ -11,9 +11,10 @@ import Foundation
 public class DataManager{
     // make singleton
     public static let sharedInstance = DataManager()
+    let defaults = UserDefaults.standard
     
     fileprivate init(){
-        UserDefaults.standard.set([String](), forKey: "favPlaces")
+        defaults.set([String](), forKey: "favPlaces")
     }
     
     struct placeInfo: Codable {
@@ -51,17 +52,17 @@ public class DataManager{
     }
     
     func saveFavorite(currentPlace: String){
-        var favPlaces = UserDefaults.standard.object(forKey: "favPlaces") as! [String]
+        var favPlaces = defaults.object(forKey: "favPlaces") as! [String]
         favPlaces.append(currentPlace)
         print(favPlaces)
-        UserDefaults.standard.set(favPlaces, forKey: "favPlaces")
+        defaults.set(favPlaces, forKey: "favPlaces")
     }
     
     func deleteFavorite(currentPlace: String){
-        var favPlaces = UserDefaults.standard.object(forKey: "favPlaces") as! [String]
+        var favPlaces = defaults.object(forKey: "favPlaces") as! [String]
         if let index = favPlaces.firstIndex(of: currentPlace){
             favPlaces.remove(at: index)
-            UserDefaults.standard.set(favPlaces, forKey: "favPlaces")
+            defaults.set(favPlaces, forKey: "favPlaces")
         }
         
     }

@@ -9,7 +9,11 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+protocol FavToMapDelegate: class{
+    func goToFavPlace(placeName: String)
+}
+
+class MapViewController: UIViewController, FavToMapDelegate, CLLocationManagerDelegate{
     
     @IBOutlet weak var mapView: MKMapView!{
         didSet {mapView.delegate = self}
@@ -23,7 +27,6 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        addPlaces()
     }
     
     
@@ -34,21 +37,20 @@ class MapViewController: UIViewController {
         mapView.pointOfInterestFilter = .excludingAll
 
         DataManager.sharedInstance.loadAnnotitionFromPlist()
+        
         let zoomLocation = CLLocationCoordinate2DMake(DataManager.sharedInstance.startLat!, DataManager.sharedInstance.startLong!)
         
         let locationSpan = MKCoordinateSpan(latitudeDelta: DataManager.sharedInstance.startDimension1!, longitudeDelta: DataManager.sharedInstance.startDimension2!)
         
         let viewRegion = MKCoordinateRegion.init(center: zoomLocation, span: locationSpan)
-        
+        // set initial view
         mapView.setRegion(viewRegion, animated: true)
-        
         // add all location pins to the map
         addPlaces()
         
     }
     
     func addPlaces(){
-        
         var placesArray = [Place]()
         for locDict in DataManager.sharedInstance.allPlaces{
             let place = Place()
@@ -56,23 +58,36 @@ class MapViewController: UIViewController {
             place.longDescription = locDict.value.description
             place.coordinate = CLLocationCoordinate2DMake(locDict.value.lat, locDict.value.long)
             placesArray.append(place)
-
         }
         
         mapView.addAnnotations(placesArray)
-        mapView.showAnnotations(placesArray, animated: true)
+//        mapView.showAnnotations(placesArray, animated: true)
     }
     
     @objc func starButtonTapped(_ button: UIButton!){
         if starButton.isSelected{
-//            print(placeName.text!)
             DataManager.sharedInstance.deleteFavorite(currentPlace: placeName.text!)
             starButton.isSelected = false
         } else {
-//            print(placeName.text!)
             DataManager.sharedInstance.saveFavorite(currentPlace: placeName.text!)
             starButton.isSelected = true
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? FavoritesViewController{
+            destination.delegate = self
+        }
+    }
+    
+    // zoom to the selected favorite place
+    func goToFavPlace(placeName: String){
+        print("enter focus function")
+        let placeDict = DataManager.sharedInstance.allPlaces[placeName]
+        let zoomLocation = CLLocationCoordinate2DMake(placeDict!.lat, placeDict!.long)
+        let locationSpan = MKCoordinateSpan(latitudeDelta: DataManager.sharedInstance.startDimension1!, longitudeDelta: DataManager.sharedInstance.startDimension2!)
+        let newViewRegion = MKCoordinateRegion.init(center: zoomLocation, span: locationSpan)
+        mapView.setRegion(newViewRegion, animated: true)
     }
     
 }

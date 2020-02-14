@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import Foundation
+
+
+
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    
     @IBOutlet weak var favTable: UITableView!
-    
     @IBAction func closeButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    weak var delegate: FavToMapDelegate?
     
     var favPlaces = UserDefaults.standard.object(forKey: "favPlaces") as! [String]
     
@@ -38,5 +41,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.delegate?.goToFavPlace(placeName: favPlaces[indexPath.row])
+        dismiss(animated: true, completion: nil)
+    }
 
 }
