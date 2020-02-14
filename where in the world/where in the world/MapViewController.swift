@@ -25,13 +25,16 @@ class MapViewController: UIViewController, FavToMapDelegate, CLLocationManagerDe
     @IBOutlet weak var placeDescript: UILabel!
     @IBOutlet weak var Favorites: UIButton!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     
-    
     override func viewWillAppear(_ animated: Bool) {
+        // wrap text in description UILabel
+        placeDescript.numberOfLines = 0
+        
         infoPlate.alpha = 0
         mapView.showsCompass = false
         mapView.pointOfInterestFilter = .excludingAll
