@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76BED0CE23F65179007B6340 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BED0CD23F65179007B6340 /* FavoritesViewController.swift */; };
 		76E4D3E123F3A40B00E48958 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E4D3E023F3A40B00E48958 /* AppDelegate.swift */; };
 		76E4D3E323F3A40B00E48958 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E4D3E223F3A40B00E48958 /* SceneDelegate.swift */; };
 		76E4D3E523F3A40B00E48958 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E4D3E423F3A40B00E48958 /* MapViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		76BED0CD23F65179007B6340 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		76E4D3DD23F3A40B00E48958 /* where in the world.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "where in the world.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E4D3E023F3A40B00E48958 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E4D3E223F3A40B00E48958 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				76E4D3F823F3AF5700E48958 /* Place.swift */,
 				76E4D3FA23F3B37800E48958 /* DataManager.swift */,
 				76E4D3FC23F3B47F00E48958 /* PlaceMarkerView.swift */,
+				76BED0CD23F65179007B6340 /* FavoritesViewController.swift */,
 				76E4D3E623F3A40B00E48958 /* Main.storyboard */,
 				76E4D3E923F3A40D00E48958 /* Assets.xcassets */,
 				76E4D3EB23F3A40D00E48958 /* LaunchScreen.storyboard */,
@@ -153,6 +156,7 @@
 			files = (
 				76E4D3FD23F3B47F00E48958 /* PlaceMarkerView.swift in Sources */,
 				76E4D3E523F3A40B00E48958 /* MapViewController.swift in Sources */,
+				76BED0CE23F65179007B6340 /* FavoritesViewController.swift in Sources */,
 				76E4D3FB23F3B37800E48958 /* DataManager.swift in Sources */,
 				76E4D3E123F3A40B00E48958 /* AppDelegate.swift in Sources */,
 				76E4D3E323F3A40B00E48958 /* SceneDelegate.swift in Sources */,
