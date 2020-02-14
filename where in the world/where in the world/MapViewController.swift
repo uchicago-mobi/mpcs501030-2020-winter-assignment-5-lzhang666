@@ -91,6 +91,13 @@ class MapViewController: UIViewController, FavToMapDelegate, CLLocationManagerDe
         let locationSpan = MKCoordinateSpan(latitudeDelta: DataManager.sharedInstance.startDimension1!, longitudeDelta: DataManager.sharedInstance.startDimension2!)
         let newViewRegion = MKCoordinateRegion.init(center: zoomLocation, span: locationSpan)
         mapView.setRegion(newViewRegion, animated: true)
+        
+        // display information board
+        infoPlate.alpha = 0.8
+        self.placeName.text = placeName
+        self.placeDescript.text = placeDict?.description
+        self.starButton.isSelected = true
+        
     }
     
 }
